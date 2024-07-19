@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    body{
+      background-color: black;
+      color: white;
+      font-family:arial;
+    }
+    .title{
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .img{
+      height: 50px;
+      border:none;
+    }
+    .js-button{
+      background-color: transparent;
+      border: 3px solid white;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-right: 10px;
+      cursor: pointer;  
+    }
+    .result{
+      font-size: 25px;
+      font-weight: bold;
+      margin-top: 60px;
+    }
+    .score-jss{
+      margin-top: 50px;
+    }
+    .resetbutton{
+      padding: 11px;
+      font-weight: bold;
+      font-size: 15x;
+      background-color: yellow;
+      border: none;
+      color:orangered;
+      border-radius: 20px;
+      margin-top:20px;
+      cursor: pointer;
+      transition: 1.5s active 0.15s;
+
+    }
+    .resetbutton:hover{
+      color:yellow;
+      background-color:orangered;
+    }
+    .resetbutton:active{
+     padding:14px;
+    }
+    </style>
+    <title>
+      java scripty stone papper secror
+    </title>
+  </head>
+  <body>
+    <p class="title">
+      Rock Paper Scissors
+    </p>
+    <button onclick="
+    result('Rock')
+    let computermove= (pickMove());
+    " class="js-button">
+     <img src="rock-emoji.png" alt="rock-emoji" class="img">
+    </button>
+    <button
+    onclick="
+    result('Paper')
+       computermove = pickMove();
+    "class="js-button">
+      <img src="paper-emoji.png" alt="paper-emoji" class="img">
+    </button>
+    <button
+    onclick="
+    result('Scissors')
+     computermove = pickMove();
+    
+  "class="js-button"><img src="scissors-emoji.png" class="img">
+    </button>
+    <p class="yow-win result">
+    </p>
+    <P class=" move-js move-jss">
+    You
+    <img src="rock-emoji.png" class="img">
+    <img src="scissors-emoji (1).png "class="img">
+    computer
+    </P>
+    <p class="score-js score-jss">
+    </p>
+<button onclick="
+    score.wins=(score.wins-score.wins);
+    score.losses=(score.losses-score.losses);
+    score.ties=(score.ties-score.ties);
+    console.log(score.wins);
+    console.log(score.ties);
+    console.log(score.losses);
+    localStorage.removeItem(score);
+    updatescoreelement();
+    "class="resetbutton">
+      Reset Score
+    </button >
+  <script>
+   let score =
+   /* wins: 0,
+    losses:0,
+    ties:0
+  */
+  JSON.parse(localStorage.getItem('score'));
+  if(score===null){
+    score={
+      wins: 0,
+      losses:0,
+      ties:0
+      }
+  }
+
+document.querySelector('.score-js').
+innerHTML =`wins:${score.wins} loosses:${score.losses} ties:${score.ties}`;
+
+
+console.log(JSON.parse(localStorage.getItem('score')));
+console.log(localStorage.getItem('score'));
+
+
+  let Move='';
+
+  function result(playerMove){
+    let Move='';
+    const computermove = pickMove();
+if( playerMove === 'Scissors'){
+
+        if(computermove === 'Rock'){
+          Move = 'You win';
+        }
+        else if(computermove === 'Paper'){
+          Move ='You loose'
+        }
+        else if(computermove ==='Scissors'){
+          Move='Tie';
+        }
+}
+else if(playerMove ==='Paper'){
+
+          if(computermove === 'Rock'){
+                  Move = 'You loose';
+                }
+                else if(computermove === 'Paper'){
+                  Move ='Tie'
+                }
+                else if(computermove ==='Scissors'){
+                  Move='You win';
+                }
+}
+else if (playerMove === 'Rock'){
+          if(computermove === 'Rock'){
+            Move = 'Tie';
+          }
+          else if(computermove === 'Paper'){
+            Move ='You win'
+          }
+          else if(computermove ==='Scissors'){
+            Move='You loose';
+          }
+   }
+   if(Move ==='You win'){
+  //score.wins=score.wins+1 or
+  score.wins+=1;
+  } 
+  else if(Move ==='Tie'){
+    score.ties+=1;
+  }
+  else if(Move==='You loose'){
+  score.losses+=1;
+}
+localStorage.setItem('score',JSON.stringify(score));
+  
+updatescoreelement();
+document.querySelector('.yow-win').innerHTML = Move;
+document.querySelector('.move-js').innerHTML =` You
+    <img src="${playerMove}-emoji.png" class="img">
+    <img src="${computermove}-emoji.png "class="img">
+    computer`;
+
+    
+}
+function updatescoreelement(){
+  document.querySelector('.score-js').
+innerHTML =`wins:${score.wins} loosses:${score.losses} ties:${score.ties}`;
+}
+  // this method or let computermove =''; or put this avlein return value in return 
+  function pickMove(){
+    const randomnumber = Math.random();
+    console.log(randomnumber);
+    console.log(typeof randomnumber)
+    let computermove ='';
+    if(randomnumber >= 0 && randomnumber < 0.333){
+       computermove ='Rock';
+    }
+    else if (randomnumber >= 0.333 && randomnumber <0.25){
+       computermove ='Paper';
+    }
+    else if (randomnumber >= 0.25 && randomnumber < 1){
+       computermove ='Scissors';
+    }
+    return computermove ;
+  }
+    </script>
+  </body>
+</html>
